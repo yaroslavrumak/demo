@@ -54,7 +54,7 @@ export default {
   align-items: center;
   position: absolute;
   top: 56px;
-  left: calc(50vw - 430px / 2);
+  left: calc(50vw - 500px / 2);
   padding: 25px;
   height: 279px;
   width: 430px;

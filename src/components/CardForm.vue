@@ -3,7 +3,12 @@
   <div class="card-form">
     <div class="card-input">
       <label for="card-number">Card Number</label>
-      <input type="text" id="card-number" v-model="cardNumber" @change="numberChange" />
+      <input
+        type="text"
+        id="card-number"
+        v-model="cardNumber"
+        @change="numberChange"
+      />
     </div>
     <div class="card-input">
       <label for="card-holders">Card Holders</label>
@@ -15,11 +20,15 @@
           <label for="card-month">Expiration Date</label>
           <select name="card-month" id="card-month">
             <option value selected disabled>Month</option>
-            <option v-bind:value="n " v-for="n in 12" v-bind:key="n">{{ n }}</option>
+            <option v-bind:value="n" v-for="n in 12" v-bind:key="n">{{
+              n
+            }}</option>
           </select>
           <select name="card-year" id="card-year">
             <option value selected disabled>Year</option>
-            <option v-bind:value="n " v-for="(n, i) in 12" v-bind:key="n">{{ i + minCardYear }}</option>
+            <option v-bind:value="n" v-for="(n, i) in 12" v-bind:key="n">{{
+              i + minCardYear
+            }}</option>
           </select>
         </div>
       </div>
@@ -75,6 +84,7 @@ export default {
   box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
   display: flex;
   flex-direction: column;
+  height: auto;
   .card-form-row {
     display: flex;
     flex-direction: row;

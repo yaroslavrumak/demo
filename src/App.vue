@@ -1,72 +1,33 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/todo">To Do</router-link> |
+      <router-link to="/pther">Other project</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
 
-<script>
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default {
-  name: "app",
-  components: {
-    HelloWorld
-  }
-};
-</script>
-
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: red;
-}
-body {
-  min-width: 100vw;
-  min-height: 100vh;
-  background: #ddeefc;
-  display: flex;
-}
-p,
-input,
-select,
-label {
-  font-family: "Source Code Pro", monospace;
-}
-input,
-select {
-  width: 100%;
-  height: 50px;
-  border-radius: 5px;
-  box-shadow: none;
-  border: 1px solid #ced6e0;
-  transition: all 0.3s ease-in-out;
-  font-size: 18px;
-  padding: 5px 15px;
-  background: none;
-  color: #1a3b5d;
-  margin-bottom: 20px;
-  &:hover {
-    border-color: #3d9cff;
-  }
-  &:focus {
-    box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
-  }
-}
-label {
-  font-size: 14px;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #1a3b5d;
-  width: 100%;
-  display: block;
-  user-select: none;
-}
 #app {
-  margin: auto;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  height: 100vh;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>

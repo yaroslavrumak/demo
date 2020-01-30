@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import CardForm from "./CardForm.vue";
-import CardFront from "./CardFront.vue";
+import CardForm from "../components/CardForm.vue";
+import CardFront from "../components/CardFront.vue";
 
 export default {
   name: "HelloWorld",
