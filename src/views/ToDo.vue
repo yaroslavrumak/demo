@@ -1,35 +1,44 @@
 <template>
-  <div class="todo-app">
+  <b-container class="todo-app">
     <h1>This is an about page</h1>
-    <b-field-input
-      type="text"
-      class="add-field"
-      v-model="newTodo"
-      @keyup.enter="addItem"
-    />
-    <button class="add-btn" @click="addItem">Add</button>
+    <b-input-group>
+      <b-form-input
+        type="text"
+        class="add-field"
+        v-model="newTodo"
+        @keyup.enter="addItem"
+        placeholder="Add something"
+      />
+      <b-button class="add-btn" @click="addItem">Add</b-button>
+    </b-input-group>
+
     <hr />
     <div class="todoBody">
       <h3 v-if="isEmpty">Your to do list is empty. Please, add some items</h3>
-      <div class="todoList" v-else>
-        <div v-for="(todo, index) in todoList" :key="index">
-          <div>
-            <p v-if="!todo.isEdit" @click="onEdit(todo)">{{ todo.text }}</p>
-            <div class="editItem" v-else>
-              <input
-                type="text"
-                v-model="todo.text"
-                @keyup.enter="doneEdit(todo)"
-                @blur="doneEdit(todo)"
-                v-focus
-              />
-            </div>
-          </div>
+      <div
+        class="todoList"
+        v-for="(todo, index) in todoList"
+        :key="index"
+        v-else
+      >
+        <div class="todoItem" v-if="!todo.isEdit">
+          <b-form-checkbox></b-form-checkbox>
+          <p @click="onEdit(todo)">{{ todo.text }}</p>
           <div class="remove-item" @click="deleteItem(index)">&times;</div>
+        </div>
+        <div class="editItem" v-else>
+          <input
+            type="text"
+            v-model="todo.text"
+            @keyup.enter="doneEdit(todo)"
+            @blur="doneEdit(todo)"
+            @keyup.esc="cancelEdit(todo)"
+            v-focus
+          />
         </div>
       </div>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -56,6 +65,9 @@ export default {
       newItem.index = new Date();
       newItem.isCompleated = false;
       newItem.isEdit = false;
+      if (this.newTodo.trim().length == 0) {
+        return;
+      }
       this.todoList.push(newItem);
       this.newTodo = "";
       this.isEmpty = false;
@@ -70,6 +82,9 @@ export default {
       }
       todo.isEdit = false;
     },
+    cancelEdit(todo) {
+      todo.isEdit = false;
+    },
     deleteItem(index) {
       this.todoList.splice(index, 1);
     }
@@ -79,7 +94,21 @@ export default {
 
 <style lang="scss">
 .todo-app {
-  .add-field {
+  .input-group {
+    width: 50%;
+    display: flex;
+    margin: auto;
+  }
+  .todoBody {
+    .todoList {
+      .todoItem {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: auto;
+      }
+    }
   }
 }
 .remove-item {
